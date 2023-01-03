@@ -8,38 +8,149 @@
 }
 :root {
     --box-shadow: 1px 1px 3px 0 black;
+    --green-border: 4px solid green;
+    --flip-timing: all linear 0.8s;
+    --large-text: clamp(0.5rem, 5vh, 2rem);
 }
 body {
     height: 100%;
     width: 100%;
     background-color: lightblue;
 }
-.back-button-container {
-    width: 100%;
-    height: 10vh;
+.back-button {
+    margin: 0 auto;
+    margin-top: 1vh;
+    width: 50%;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border: var(--green-border);
+    border-radius: 10px;
 }
-.hint-image-box-container {
+.game-screen,.game-select-screen {
+    height: 90vh;
     width: 100%;
+}
+.game-select-text {
+    width: 100%;
+    height: 5vh;
+    margin-top: 5vh;
+    text-align: center;
+    font-size: var(--large-text);
+}
+.game-select-buttons-container {
+    margin: 0 auto;
+    width: 90%;
     height: 40vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.hint-image-box {
-    height: 38vh;
-    width: 20vw;
+.game-select-button {
+    width: 20vh;
+    height: 20vh;
     box-shadow: var(--box-shadow);
+}
+.game-select-random {
+    margin: 0 auto;
+    width: 60%;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+    border: var(--green-border);
+    border-radius: 10px;
+}
+.game-select-random-text {
+    font-size: var(--large-text);
+    height: 5vh;
+    text-align: center;
+}
+.game-screen-inner {
+    margin: 0 auto;
+    width: 95%;
+    height: 76vh;
+    margin-top: 1vh;
+    transition: var(--flip-timing);
+}
+.hint-image-box-container {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transition: var(--flip-timing);
+}
+.hint-image-box {
+    height: 48vh;
+    width: 25vw;
+    box-shadow: var(--box-shadow);
+    transition: var(--flip-timing);
 }
 .image-box-outer {
     width: 100%;
-    height: 46vh;
+    height: 36vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .image-box {
-    height: 45vh;
-    width: 50vh;
+    margin: 0 auto;
+    margin-top: 2vh;
+    height: 72vh;
+    width: 72vh;
     box-shadow: var(--box-shadow);
+    transition: var(--flip-timing);
+}
+
+.animal-images-container {
+    margin: 0 auto;
+    width: 90%;
+    height: 25vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    transition: var(--flip-timing);
+    box-shadow: var(--box-shadow);
+}
+.animal-image {
+    height: 23vh;
+    width: 15vw;
+}
+.answer-button {
+    margin: 0 auto;
+    margin-top: 1vh;
+    width: 60%;
+    height: 10vh;
+    box-shadow: var(--box-shadow);
+    border: var(--green-border);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.answer-button-text,.back-button-text {
+    font-size: var(--large-text);
+    width: 40%;
+    height: 5vh;
+    text-align: center;
+}
+
+.spin {
+    transform:rotateX(180deg);
+    transition: var(--flip-timing);
+    transform-style: preserve-3d;
+}
+
+.flipped {
+    box-shadow: var(--box-shadow);
+}
+
+.behind {
+    z-index: -100;
+    display: none;
 }
