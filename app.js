@@ -1,11 +1,27 @@
 const imagesObj = {
     big: "./images/features/img1.png", small: "./images/features/img2.png", long: "./images/features/img3.png", longnose: "./images/features/img4.png", longears: "./images/features/img5.png",
     cute: "./images/features/img6.png", scary: "./images/features/img7.png", brown: "./images/features/img8.png", white: "./images/features/img9.png", black: "./images/features/img10.png",
-    blackandwhite: "./images/features/img11.png", yellow: "./images/features/img12.png", yellowandblack: "./images/features/img13.png", orange: "./images/features/img14.png",
-    fast: "./images/features/img15.png", hot: "./images/features/img16.png", cold: "./images/features/img17.png", mountain: "./images/features/img18.png", savanna: "./images/features/img19.png",
-    house: "./images/features/img20.png", hard: "./images/features/img21.png", jump: "./images/features/img22.png", fly: "./images/features/img23.png", banana: "./images/features/img24.png",
-    cheese: "./images/features/img25.png", milk: "./images/features/img26.png", pink: "./images/features/img27.png"
+    blackandwhite: "./images/features/img11.png", yellow: "./images/features/img12.png", yellowandblack: "./images/features/img13.png", orange: "./images/features/img14.png", 
+    pink: "./images/features/img27.png", fast: "./images/features/img15.png", hot: "./images/features/img16.png", cold: "./images/features/img17.png", mountain: "./images/features/img18.png", 
+    savanna: "./images/features/img19.png", house: "./images/features/img20.png", hard: "./images/features/img21.png", jump: "./images/features/img22.png", fly: "./images/features/img23.png", 
+    banana: "./images/features/img24.png", cheese: "./images/features/img25.png", milk: "./images/features/img26.png"
 }
+const animalImagesObj = {
+    "bear": "./images/animals/img1.png", "polar bear": "./images/animals/img2.png",
+    "elephant": "./images/animals/img3.png", "tiger": "./images/animals/img4.png",
+    "lion": "./images/animals/img5.png", "zebra": "./images/animals/img6.png",
+    "gorilla": "./images/animals/img7.png", "monkey": "./images/animals/img8.png",
+    "horse": "./images/animals/img9.png", "camel": "./images/animals/img10.png",
+    "cow": "./images/animals/img11.png", "sheep": "./images/animals/img12.png",
+    "pig": "./images/animals/img13.png", "panda": "./images/animals/img14.png",
+    "koala": "./images/animals/img15.png", "penguin": "./images/animals/img16.png",
+    "dog": "./images/animals/img17.png", "cat": "./images/animals/img18.png",
+    "rabbit": "./images/animals/img19.png", "mouse": "./images/animals/img20.png",
+    "snake": "./images/animals/img21.png", "frog": "./images/animals/img22.png",
+    "bird": "./images/animals/img23.png", "fox": "./images/animals/img24.png",
+    "turtle": "./images/animals/img25.png"
+}
+
 
 const mainObj = {
     "bear": [imagesObj.big,imagesObj.brown,imagesObj.mountain,"./images/animals/img1.png"], "polar bear": [imagesObj.big,imagesObj.white,imagesObj.cold,"./images/animals/img2.png"],
@@ -22,6 +38,7 @@ const mainObj = {
     "bird": [imagesObj.small,imagesObj.cute,imagesObj.fly,"./images/animals/img23.png"], "fox": [imagesObj.small,imagesObj.cute,imagesObj.orange,"./images/animals/img24.png"],
     "turtle": [imagesObj.small,imagesObj.cute,imagesObj.hard,"./images/animals/img25.png"],
 }
+
 
 const numbersObj = {
     0: "./images/numbers/img1.png", 1: "./images/numbers/img2.png", 2: "./images/numbers/img3.png"
@@ -41,17 +58,33 @@ const gameSelectNumberObj = {
 
 
 const animalsArr = Object.keys( mainObj )
+const animalImagesArr = Object.values( animalImagesObj )
+const featuresArr = Object.values( imagesObj )
 const hintImageBoxContainer = document.querySelector(".hint-image-box-container")
 const hintBoxes = document.querySelectorAll(".hint-image-box")
 let animalImagesContainer = document.querySelector(".animal-images-container")
 const animalImages = document.querySelectorAll(".animal-image")
+const gameSelectScreen = document.querySelector(".game-select-screen")
+const gameScreen = document.querySelector(".game-screen")
+const gameScreenInner = document.querySelector(".game-screen-inner")
+const mainMenuScreen = document.querySelector(".main-menu-screen")
+const practiceSelectScreen = document.querySelector(".practice-select-screen")
+const practiceScreen = document.querySelector(".practice-screen")
+const practiceAnimals = document.querySelector(".practice-animals")
+const practiceFeatures = document.querySelector(".practice-features")
+const imageScreen = document.querySelector(".image-screen")
+
 const answerBtn = document.querySelector(".answer-button")
 const answerBtnText = document.querySelector(".answer-button-text")
 const gameSelectButtons = document.querySelectorAll(".game-select-button")
 const gameSelectRandom = document.querySelector(".game-select-random")
-const gameSelectScreen = document.querySelector(".game-select-screen")
-const gameScreen = document.querySelector(".game-screen")
-const gameScreenInner = document.querySelector(".game-screen-inner")
+const backButton = document.querySelector(".back-button")
+const mainButtonGame = document.querySelector(".main-button-game")
+const mainButtonPractice = document.querySelector(".main-button-practice")
+const practiceButtonAnimals = document.querySelector(".practice-button-animals")
+const practiceButtonFeatures = document.querySelector(".practice-button-features")
+const naviLeft = document.querySelector(".navi-button-left")
+const naviRight = document.querySelector(".navi-button-right")
 
 let gameStarted = false
 let hintsFinished = false
@@ -66,11 +99,88 @@ let checkObj = {}
 let wait = false
 let record = ""
 let getFive = []
+let inGame = false
+let inGameSelect = false
+let inMain = true
+let inPracticeSelect = false
+let inPractice = false
+let inImage = false
+let practiceAnimal = ""
+let practiceFeature = ""
+let practiceIsAnimal = false
+
 
 for ( x of animalsArr ) {
     checkObj[x] = false
 }
 
+function buildPracticeGrids() {
+    for ( let i = 0; i < animalsArr.length; i++ ) {
+        document.querySelector(".animals-grid").innerHTML += `
+        <div class="practice-grid-box">
+            <img src="${mainObj[animalsArr[i]][3]}">
+        </div>
+        `
+    }
+    for ( let i = 0; i < featuresArr.length; i++ ) {
+        document.querySelector(".features-grid").innerHTML += `
+        <div class="practice-grid-box">
+            <img src="${featuresArr[i]}">
+        </div>
+        `
+    }
+    let allBoxes = document.querySelectorAll(".practice-grid-box")
+    allBoxes.forEach( (image) => {
+        image.addEventListener("click",()=>{
+           let thisImage = image.children[0].getAttribute("src")
+           openImage(thisImage)
+        })
+    })
+}
+buildPracticeGrids()
+
+function openImage(image) {
+    document.querySelector(".image").innerHTML = `<img src="${image}">`
+    inImage = true
+    inPractice = false
+    imageScreen.classList.remove("behind")
+    practiceScreen.classList.add("behind")
+    if ( animalImagesArr.includes(image) ) {
+        practiceAnimal = animalImagesArr.indexOf(image) 
+        practiceIsAnimal = true
+    } else {
+        practiceFeature = featuresArr.indexOf(image)
+        practiceIsAnimal = false 
+    }
+}
+
+naviLeft.addEventListener("click",()=>{
+    if ( practiceIsAnimal ) {
+        if ( practiceAnimal > 0 ) {
+            document.querySelector(".image").innerHTML = `<img src="${animalImagesArr[practiceAnimal-1]}">`
+            practiceAnimal--
+        }
+    } else {
+        if ( practiceFeature > 0 ) {
+            document.querySelector(".image").innerHTML = `<img src="${featuresArr[practiceFeature-1]}">`
+            practiceFeature--
+        }
+    }
+})
+naviRight.addEventListener("click",()=>{
+    if ( practiceIsAnimal ) {
+        if ( practiceAnimal < animalImagesArr.length-1 ) {
+            document.querySelector(".image").innerHTML = `<img src="${animalImagesArr[practiceAnimal+1]}">`
+            practiceAnimal++
+        }
+    } else {
+        if ( practiceFeature < featuresArr.length-1 ) {
+            document.querySelector(".image").innerHTML = `<img src="${featuresArr[practiceFeature+1]}">`
+            practiceFeature++
+        }
+    }
+    
+})
 /*
 window.addEventListener("keydown",(x)=>{
     if ( x.key === "Enter" ) {
@@ -84,7 +194,75 @@ window.addEventListener("keydown",(x)=>{
     }
 })
 */
+backButton.addEventListener("click",()=>{
+    if ( inGame ) {
+        gameScreen.classList.add("behind")
+        gameSelectScreen.classList.remove("behind")
+        if ( gameScreenInner.classList.contains("flipped") ) {
+            gameScreenInner.classList.remove("flipped")
+        }
+        gameScreenInner.innerHTML = record
+        animalImagesContainer.innerHTML = ""
+        answerBtnText.textContent = "Show Answer"
+        answerSeen = false
+        animalImagesSeen = false
+        inGame = false
+        inGameSelect = true
+    } else if ( inGameSelect ) {
+        mainMenuScreen.classList.remove("behind")
+        gameSelectScreen.classList.add("behind")
+        inGameSelect = false
+        inMain = true
+    } else if ( inPracticeSelect ) {
+        practiceSelectScreen.classList.add("behind")
+        mainMenuScreen.classList.remove("behind")
+    } else if ( inPractice ) {
+        practiceScreen.classList.add("behind")
+        practiceSelectScreen.classList.remove("behind")
+        if ( !practiceAnimals.classList.contains("behind") ) {
+            practiceAnimals.classList.add("behind")
+        }
+        if ( !practiceFeatures.classList.contains("behind") ) {
+            practiceFeatures.classList.add("behind")
+        }
+        inPractice = false
+        inPracticeSelect = true
+    } else if ( inImage ) {
+        imageScreen.classList.add("behind")
+        practiceScreen.classList.remove("behind")
+        practiceAnimal = ""
+        practiceFeature = ""
+        inImage = false
+        inPractice = true
+    }
+})
 
+mainButtonPractice.addEventListener("click",()=>{
+    inMain = false
+    inPracticeSelect = true
+    mainMenuScreen.classList.add("behind")
+    practiceSelectScreen.classList.remove("behind")
+})
+practiceButtonAnimals.addEventListener("click",()=>{
+    practiceSelectScreen.classList.add("behind")
+    practiceScreen.classList.remove("behind")
+    practiceAnimals.classList.remove("behind")
+    inPracticeSelect = false
+    inPractice = true
+})
+practiceButtonFeatures.addEventListener("click",()=>{
+    practiceSelectScreen.classList.add("behind")
+    practiceScreen.classList.remove("behind")
+    practiceFeatures.classList.remove("behind")
+    inPracticeSelect = false
+    inPractice = true
+})
+mainButtonGame.addEventListener("click",()=>{
+    inMain = false
+    inGameSelect = true
+    mainMenuScreen.classList.add("behind")
+    gameSelectScreen.classList.remove("behind")
+})
 gameSelectButtons.forEach( (select)=>{
     select.addEventListener("click",()=>{
         let thisId = select.getAttribute("id")
@@ -163,10 +341,14 @@ answerBtn.addEventListener("click",()=>{
         answerBtnText.textContent = "Show Answer"
         answerSeen = false
         animalImagesSeen = false
+        inGame = false
+        inGameSelect = true
     }
 })
 
 function gameSetup(answerArr) {
+    inGame = true
+    inGameSelect = false
     quizCount = 0
     hintCount = 0
     wait = false

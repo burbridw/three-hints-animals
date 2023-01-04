@@ -5,12 +5,15 @@
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 :root {
-    --box-shadow: 1px 1px 3px 0 black;
-    --green-border: 4px solid green;
+    --box-shadow: 1px 1px 3px 1px black;
+    --green-border: 4px solid silver;
     --flip-timing: all linear 0.8s;
-    --large-text: clamp(0.5rem, 5vh, 2rem);
+    --large-text: clamp(0.5rem, 5vh, 1.8rem);
+    --xlarge-text: clamp(2rem, 15vh, 5rem);
+    --button-color: #267edc;
 }
 body {
     height: 100%;
@@ -28,15 +31,100 @@ body {
     box-shadow: var(--box-shadow);
     border: var(--green-border);
     border-radius: 10px;
+    background-color: var(--button-color);
 }
-.game-screen,.game-select-screen {
+.game-screen,.game-select-screen,.main-menu-screen,.practice-select-screen,.practice-screen,.image-screen {
     height: 90vh;
     width: 100%;
 }
+.main-menu-screen,.practice-select-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: var(--xlarge-text);
+}
+.main-button-practice,.practice-button-animals {
+    width: 80vw;
+    height: 30vh;
+    border: var(--green-border);
+    box-shadow: var(--box-shadow);
+    background-color: var(--button-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.main-button-game,.practice-button-features {
+    width: 80vw;
+    height: 40vh;
+    border: var(--green-border);
+    background-color: var(--button-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.main-button-text {
+    width: 100%;
+    text-align: center;
+    height: 20vh;
+}
+.practice-grid {
+    margin: 0 auto;
+    width: 95vw;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(7,1fr);
+    overflow: scroll;
+}
+.practice-grid-box {
+    margin: 0 auto;
+    width: 20vw;
+    height: 20vw;
+}
+
+.image-screen {
+    display: flex;
+}
+
+.image {
+    margin: 0 auto;
+    margin-top: 5vh;
+    width: 80vh;
+    height: 80vh;
+    box-shadow: var(--box-shadow);
+}
+
+.navi-button-left {
+    margin-left: 5vw;
+    display: flex;
+    justify-content: flex-start;
+    width: 20vw;
+    align-items: center;
+}
+.navi-button-left img {
+    transform: rotate(-90deg);
+    height: 150px;
+    width: 250px;
+}
+.navi-button-right {
+    margin-right: 5vw;
+    width: 20vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.navi-button-right img {
+    transform: rotate(90deg);
+    height: 150px;
+    width: 250px;
+}
 .game-select-text {
     width: 100%;
-    height: 5vh;
-    margin-top: 5vh;
+    height: 6vh;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
     text-align: center;
     font-size: var(--large-text);
 }
@@ -49,9 +137,10 @@ body {
     align-items: center;
 }
 .game-select-button {
-    width: 20vh;
-    height: 20vh;
+    width: 15vw;
+    height: 15vw;
     box-shadow: var(--box-shadow);
+    background-color: var(--button-color);
 }
 .game-select-random {
     margin: 0 auto;
@@ -62,11 +151,12 @@ body {
     align-items: center;
     box-shadow: var(--box-shadow);
     border: var(--green-border);
+    background-color: var(--button-color);
     border-radius: 10px;
 }
 .game-select-random-text {
     font-size: var(--large-text);
-    height: 5vh;
+    height: 6vh;
     text-align: center;
 }
 .game-screen-inner {
@@ -88,6 +178,7 @@ body {
     height: 48vh;
     width: 25vw;
     box-shadow: var(--box-shadow);
+    background-color: var(--button-color);
     transition: var(--flip-timing);
 }
 .image-box-outer {
@@ -105,6 +196,7 @@ body {
     width: 72vh;
     box-shadow: var(--box-shadow);
     transition: var(--flip-timing);
+    background-color: var(--button-color);
 }
 
 .animal-images-container {
@@ -116,6 +208,7 @@ body {
     align-items: center;
     transition: var(--flip-timing);
     box-shadow: var(--box-shadow);
+    background-color: var(--button-color);
 }
 .animal-image {
     height: 23vh;
@@ -128,6 +221,7 @@ body {
     height: 10vh;
     box-shadow: var(--box-shadow);
     border: var(--green-border);
+    background-color: var(--button-color);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -136,7 +230,7 @@ body {
 .answer-button-text,.back-button-text {
     font-size: var(--large-text);
     width: 40%;
-    height: 5vh;
+    height: 6vh;
     text-align: center;
 }
 
