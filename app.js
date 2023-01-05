@@ -86,6 +86,8 @@ const practiceButtonFeatures = document.querySelector(".practice-button-features
 const naviLeft = document.querySelector(".navi-button-left")
 const naviRight = document.querySelector(".navi-button-right")
 
+const answerBox = document.querySelector(".image-box")
+
 let gameStarted = false
 let hintsFinished = false
 let answerSeen = false
@@ -302,6 +304,9 @@ animalImagesContainer.addEventListener("click",()=>{
 */
 answerBtn.addEventListener("click",()=>{
     if ( !answerSeen ) {
+        gameScreenInner.style.transform = "rotatex(180deg)"
+        answerBox.style.transform = "rotatex(0deg)"
+        /*
         gameScreenInner.classList.add("spin")
         gameScreenInner.classList.add("flipped")
         setTimeout( ()=>{
@@ -309,7 +314,8 @@ answerBtn.addEventListener("click",()=>{
             gameScreenInner.classList.remove("spin")
             wait = false
         },395)
-        wait = true
+        */
+
         quizCount++
         if ( quizCount < 5 ) {
             answerBtnText.textContent = "Next"
@@ -318,16 +324,13 @@ answerBtn.addEventListener("click",()=>{
         }
         answerSeen = true
     } else if ( quizCount < 5 ) {
-        gameScreenInner.classList.add("spin")
-        gameScreenInner.classList.remove("flipped")
-        setTimeout( ()=>{
-            gameScreenInner.innerHTML = record
-            animalImagesContainer.innerHTML = ""
-            gameScreenInner.classList.remove("spin")
-            wait = false
+        gameScreenInner.style.transform = "rotatex(0deg)"
+        answerBox.style.transform = "rotatex(180deg)"
+        gameScreenInner.innerHTML = record
+        animalImagesContainer.innerHTML = ""
+        setTimeout( ()=> {
             question(quizCount)
-        },395)
-        wait = true
+        },500)
         hintCount = 0
         answerBtnText.textContent = "Show Answer"
         answerSeen = false
@@ -335,7 +338,8 @@ answerBtn.addEventListener("click",()=>{
     } else {
         gameScreen.classList.add("behind")
         gameSelectScreen.classList.remove("behind")
-        gameScreenInner.classList.remove("flipped")
+        gameScreenInner.style.transform = "rotatex(0deg)"
+        answerBox.style.transform = "rotatex(180deg)"
         gameScreenInner.innerHTML = record
         animalImagesContainer.innerHTML = ""
         answerBtnText.textContent = "Show Answer"
@@ -383,6 +387,7 @@ function gameSetup(answerArr) {
     })
     gameArr = answerArr.slice(0,answerArr.length).sort( ()=> { return 0.5 - Math.random() } )
     answer = gameArr[quizCount]
+    document.querySelector(".image-box").innerHTML = `<img src="${mainObj[answer][3]}">`
     animalImagesContainer.innerHTML = ""
     getFive = animalsArr.slice(0,animalsArr.length).sort( ()=> {return 0.5 - Math.random()}).slice(0,5)
     if ( !getFive.includes(answer) ) {
@@ -424,6 +429,7 @@ function question(quizCount) {
         }
     })
     answer = gameArr[quizCount]
+    document.querySelector(".image-box").innerHTML = `<img src="${mainObj[answer][3]}">`
     animalImagesContainer.innerHTML = ""
     getFive = animalsArr.slice(0,animalsArr.length).sort( ()=> {return 0.5 - Math.random()}).slice(0,5)
     if ( !getFive.includes(answer) ) {
