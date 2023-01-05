@@ -200,9 +200,8 @@ backButton.addEventListener("click",()=>{
     if ( inGame ) {
         gameScreen.classList.add("behind")
         gameSelectScreen.classList.remove("behind")
-        if ( gameScreenInner.classList.contains("flipped") ) {
-            gameScreenInner.classList.remove("flipped")
-        }
+        gameScreenInner.style.transform = "rotatex(0deg)"
+        answerBox.style.transform = "rotatex(180deg)"
         gameScreenInner.innerHTML = record
         animalImagesContainer.innerHTML = ""
         answerBtnText.textContent = "Show Answer"

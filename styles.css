@@ -11,8 +11,8 @@
     --box-shadow: 1px 1px 3px 1px black;
     --green-border: 4px solid silver;
     --flip-timing: all linear 0.8s;
-    --large-text: clamp(0.5rem, 5vh, 1.8rem);
-    --xlarge-text: clamp(2rem, 15vh, 5rem);
+    --large-text: clamp(0.5rem, 5vmin, 1.8rem);
+    --xlarge-text: clamp(2rem, 15vmin, 5rem);
     --button-color: #267edc;
 }
 body {
@@ -67,7 +67,7 @@ body {
 .main-button-text {
     width: 100%;
     text-align: center;
-    height: 20vh;
+    height: 16vmin;
 }
 .practice-grid {
     margin: 0 auto;
@@ -81,7 +81,7 @@ body {
 .practice-grid-box {
     margin: 0 auto;
     width: 20vw;
-    height: 20vw;
+    height: 20vmin;
 }
 
 .image-screen {
@@ -91,8 +91,8 @@ body {
 .image {
     margin: 0 auto;
     margin-top: 5vh;
-    width: 80vh;
-    height: 80vh;
+    width: 80vw;
+    height: 80vmin;
     box-shadow: var(--box-shadow);
 }
 
@@ -105,8 +105,8 @@ body {
 }
 .navi-button-left img {
     transform: rotate(-90deg);
-    height: 150px;
-    width: 250px;
+    height: 15vmin;
+    width: 35vh;
 }
 .navi-button-right {
     margin-right: 5vw;
@@ -117,12 +117,12 @@ body {
 }
 .navi-button-right img {
     transform: rotate(90deg);
-    height: 150px;
-    width: 250px;
+    height: 15vmin;
+    width: 35vh;
 }
 .game-select-text {
     width: 100%;
-    height: 6vh;
+    height: 6vmin;
     margin-top: 4vh;
     margin-bottom: 2vh;
     text-align: center;
@@ -156,7 +156,7 @@ body {
 }
 .game-select-random-text {
     font-size: var(--large-text);
-    height: 6vh;
+    height: 6vmin;
     text-align: center;
 }
 .answer-flipper {
@@ -190,7 +190,7 @@ body {
     transition: var(--flip-timing);
 }
 .hint-image-box {
-    height: 48vh;
+    height: 48vmin;
     width: 25vw;
     box-shadow: var(--box-shadow);
     background-color: var(--button-color);
@@ -201,7 +201,7 @@ body {
 .animal-images-container {
     margin: 0 auto;
     width: 90%;
-    height: 25vh;
+    height: 25vmin;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -212,7 +212,7 @@ body {
     backface-visibility: hidden;
 }
 .animal-image {
-    height: 23vh;
+    height: 23vmin;
     width: 15vw;
 }
 .image-box {
@@ -255,7 +255,7 @@ body {
 .answer-button-text,.back-button-text {
     font-size: var(--large-text);
     width: 40%;
-    height: 6vh;
+    height: 6vmin;
     text-align: center;
 }
 
