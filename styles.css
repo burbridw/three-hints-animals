@@ -165,8 +165,6 @@ body {
     height: 76vh;
     margin-top: 1vh;
     background-color: transparent;
-}
-.answer-flipper-inner {
     position: relative;
     transition: var(--flip-timing);
     transform-style: preserve-3d;
@@ -185,8 +183,6 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
     transition: var(--flip-timing);
 }
 .hint-image-box {
@@ -195,8 +191,6 @@ body {
     box-shadow: var(--box-shadow);
     background-color: var(--button-color);
     transition: var(--flip-timing);
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
 }
 .animal-images-container {
     margin: 0 auto;
@@ -208,8 +202,6 @@ body {
     transition: var(--flip-timing);
     box-shadow: var(--box-shadow);
     background-color: var(--button-color);
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
 }
 .animal-image {
     height: 23vmin;

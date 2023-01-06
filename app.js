@@ -22,7 +22,6 @@ const animalImagesObj = {
     "turtle": "./images/animals/img25.png"
 }
 
-
 const mainObj = {
     "bear": [imagesObj.big,imagesObj.brown,imagesObj.mountain,"./images/animals/img1.png"], "polar bear": [imagesObj.big,imagesObj.white,imagesObj.cold,"./images/animals/img2.png"],
     "elephant": [imagesObj.big,imagesObj.longnose,imagesObj.savanna,"./images/animals/img3.png"], "tiger": [imagesObj.big,imagesObj.yellowandblack,imagesObj.scary,"./images/animals/img4.png"],
@@ -39,10 +38,6 @@ const mainObj = {
     "turtle": [imagesObj.small,imagesObj.cute,imagesObj.hard,"./images/animals/img25.png"],
 }
 
-
-const numbersObj = {
-    0: "./images/numbers/img1.png", 1: "./images/numbers/img2.png", 2: "./images/numbers/img3.png"
-}
 const hintBoxNumberObj = {
     "hint1": 0,
     "hint2": 1,
@@ -56,13 +51,11 @@ const gameSelectNumberObj = {
     "game5": 20
 }
 
-
 const animalsArr = Object.keys( mainObj )
 const animalImagesArr = Object.values( animalImagesObj )
 const featuresArr = Object.values( imagesObj )
 const hintImageBoxContainer = document.querySelector(".hint-image-box-container")
 const hintBoxes = document.querySelectorAll(".hint-image-box")
-let animalImagesContainer = document.querySelector(".animal-images-container")
 const animalImages = document.querySelectorAll(".animal-image")
 const gameSelectScreen = document.querySelector(".game-select-screen")
 const gameScreen = document.querySelector(".game-screen")
@@ -73,6 +66,9 @@ const practiceScreen = document.querySelector(".practice-screen")
 const practiceAnimals = document.querySelector(".practice-animals")
 const practiceFeatures = document.querySelector(".practice-features")
 const imageScreen = document.querySelector(".image-screen")
+const answerBox = document.querySelector(".image-box")
+
+let animalImagesContainer = document.querySelector(".animal-images-container")
 
 const answerBtn = document.querySelector(".answer-button")
 const answerBtnText = document.querySelector(".answer-button-text")
@@ -86,8 +82,6 @@ const practiceButtonFeatures = document.querySelector(".practice-button-features
 const naviLeft = document.querySelector(".navi-button-left")
 const naviRight = document.querySelector(".navi-button-right")
 
-const answerBox = document.querySelector(".image-box")
-
 let gameStarted = false
 let hintsFinished = false
 let answerSeen = false
@@ -97,7 +91,6 @@ let quizCount = 0
 let answer = ""
 let answerArr = []
 let gameArr = []
-let checkObj = {}
 let wait = false
 let record = ""
 let getFive = []
@@ -110,11 +103,6 @@ let inImage = false
 let practiceAnimal = ""
 let practiceFeature = ""
 let practiceIsAnimal = false
-
-
-for ( x of animalsArr ) {
-    checkObj[x] = false
-}
 
 function buildPracticeGrids() {
     for ( let i = 0; i < animalsArr.length; i++ ) {
@@ -183,19 +171,7 @@ naviRight.addEventListener("click",()=>{
     }
     
 })
-/*
-window.addEventListener("keydown",(x)=>{
-    if ( x.key === "Enter" ) {
-        if ( !wait ) {
-            if ( !gameStarted ) {
-                startGame()
-            } else {
-                gameStep()
-            }
-        }
-    }
-})
-*/
+
 backButton.addEventListener("click",()=>{
     if ( inGame ) {
         gameScreen.classList.add("behind")
@@ -204,7 +180,7 @@ backButton.addEventListener("click",()=>{
         answerBox.style.transform = "rotatex(180deg)"
         gameScreenInner.innerHTML = record
         animalImagesContainer.innerHTML = ""
-        answerBtnText.textContent = "Show Answer"
+        answerBtnText.textContent = "Answer"
         answerSeen = false
         animalImagesSeen = false
         inGame = false
@@ -281,40 +257,10 @@ gameSelectRandom.addEventListener("click",()=>{
     gameScreen.classList.remove("behind")
     gameSelectScreen.classList.add("behind")
 })
-
-
-
-
-//startGame()
-
-/*
-animalImagesContainer.addEventListener("click",()=>{
-    if ( !animalImagesSeen ) {
-        animalImagesContainer.classList.add("spin")
-        setTimeout( ()=>{
-            animalImagesContainer.classList.remove("spin")
-            for ( let i = 0; i < getFive.length; i++ ) {
-            animalImagesContainer.innerHTML += `<div class="animal-image"><img src="${mainObj[getFive[i]][3]}"></div>`
-            }
-        },395)
-        animalImagesSeen = true
-    }
-})
-*/
 answerBtn.addEventListener("click",()=>{
     if ( !answerSeen ) {
         gameScreenInner.style.transform = "rotatex(180deg)"
         answerBox.style.transform = "rotatex(0deg)"
-        /*
-        gameScreenInner.classList.add("spin")
-        gameScreenInner.classList.add("flipped")
-        setTimeout( ()=>{
-            gameScreenInner.innerHTML = `<div class="image-box"><img src="${mainObj[answer][3]}"></div>`
-            gameScreenInner.classList.remove("spin")
-            wait = false
-        },395)
-        */
-
         quizCount++
         if ( quizCount < 5 ) {
             answerBtnText.textContent = "Next"
@@ -331,7 +277,7 @@ answerBtn.addEventListener("click",()=>{
             question(quizCount)
         },500)
         hintCount = 0
-        answerBtnText.textContent = "Show Answer"
+        answerBtnText.textContent = "Answer"
         answerSeen = false
         animalImagesSeen = false
     } else {
@@ -341,7 +287,7 @@ answerBtn.addEventListener("click",()=>{
         answerBox.style.transform = "rotatex(180deg)"
         gameScreenInner.innerHTML = record
         animalImagesContainer.innerHTML = ""
-        answerBtnText.textContent = "Show Answer"
+        answerBtnText.textContent = "Answer"
         answerSeen = false
         animalImagesSeen = false
         inGame = false
@@ -395,7 +341,6 @@ function gameSetup(answerArr) {
         getFive.sort( ()=>{ return 0.5 - Math.random()} )
     }
 }
-
 function question(quizCount) {
     wait = false
     record = gameScreenInner.innerHTML 
